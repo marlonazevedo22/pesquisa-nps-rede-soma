@@ -25,7 +25,7 @@ export default function Home() {
   const handleScoreSelect = (score: number) => {
     // Salvar temporariamente ou passar via state
     sessionStorage.setItem('npsScore', score.toString())
-    sessionStorage.setItem('startTime', Date.now().toString())
+    sessionStorage.setItem('startTime', new Date().getTime().toString())
     router.push('/questionario')
   }
 
@@ -33,7 +33,7 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 flex flex-col items-center justify-center p-4">
       <div className="bg-white rounded-lg shadow-lg p-6 sm:p-8 max-w-sm sm:max-w-md w-full text-center">
         <div className="mb-6">
-          <Image src="/logo.png" alt="Rede Soma Av. Sete" width={96} height={96} className="mx-auto" />
+          <Image src="/logo.png" alt="Rede Soma Av. Sete" width={128} height={128} className="mx-auto" />
         </div>
         <h1 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Bem-vindo à Rede Soma Av. Sete</h1>
         <p className="text-sm sm:text-base text-gray-600 mb-6">De 0 a 10, qual a probabilidade de nos recomendar?</p>
