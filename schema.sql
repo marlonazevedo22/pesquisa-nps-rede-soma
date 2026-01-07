@@ -18,7 +18,8 @@ CREATE TABLE respostas (
   q4 INTEGER NOT NULL CHECK (q4 >= 1 AND q4 <= 5),
   q5 INTEGER NOT NULL CHECK (q5 >= 1 AND q5 <= 5),
   nome TEXT,
-  telefone TEXT,
+  telefone TEXT UNIQUE,
+  origem TEXT,
   duration INTEGER, -- in milliseconds
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
