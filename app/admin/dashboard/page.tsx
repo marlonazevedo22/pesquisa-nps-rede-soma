@@ -23,9 +23,6 @@ export default function AdminDashboard() {
   const [respostas, setRespostas] = useState<Resposta[]>([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState('');
-  const [emailNovo, setEmailNovo] = useState('');
-  const [senhaNova, setSenhaNova] = useState('');
-  const [msgNovo, setMsgNovo] = useState('');
   const router = useRouter();
 
   useEffect(() => {
@@ -43,51 +40,12 @@ export default function AdminDashboard() {
     checkAuthAndFetch();
   }, [router]);
 
-  async function handleLogout() {
-    await supabase.auth.signOut();
-    router.replace('/admin/login');
-  }
-
-  async function handleNovoUsuario(e: React.FormEvent) {
-    e.preventDefault();
-    setMsgNovo('');
-    const { error } = await supabase.auth.admin.createUser({ email: emailNovo, password: senhaNova });
-    if (error) setMsgNovo('Erro ao criar usuário: ' + error.message);
-    else setMsgNovo('Usuário criado com sucesso!');
-    setEmailNovo('');
-    setSenhaNova('');
-  }
-
   if (loading) return <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">Carregando...</div>;
   if (erro) return <div className="min-h-screen flex items-center justify-center bg-gray-900 text-red-400">{erro}</div>;
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Dashboard Admin - Respostas NPS</h1>
-        <button onClick={handleLogout} className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</button>
-      </div>
-      <form onSubmit={handleNovoUsuario} className="bg-gray-800 p-4 rounded mb-6 max-w-md">
-        <h2 className="text-lg font-semibold mb-2">Criar novo usuário admin</h2>
-        <input
-          type="email"
-          placeholder="E-mail do novo usuário"
-          className="w-full p-2 mb-2 rounded bg-gray-700 text-white"
-          value={emailNovo}
-          onChange={e => setEmailNovo(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha do novo usuário"
-          className="w-full p-2 mb-2 rounded bg-gray-700 text-white"
-          value={senhaNova}
-          onChange={e => setSenhaNova(e.target.value)}
-          required
-        />
-        <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded">Criar usuário</button>
-        {msgNovo && <div className="text-green-400 mt-2 text-sm">{msgNovo}</div>}
-      </form>
+      <h1 className="text-2xl font-bold mb-6">Dashboard Admin - Respostas NPS</h1>
       <div className="overflow-x-auto">
         <table className="w-full table-auto border-collapse bg-gray-800 rounded">
           <thead>
