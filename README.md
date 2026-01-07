@@ -7,11 +7,13 @@ Uma aplicação web fullstack para coletar feedback de clientes da Rede Soma Av.
 - **Home**: Tela de boas-vindas com pergunta NPS (0-10) e botões intuitivos.
 - **Questionário**: 5 perguntas de satisfação com ratings emoji (1-5), formatação incremental de telefone e campos opcionais para nome e telefone.
 - **Obrigado**: Página final com ícones maiores e links para Google e Instagram.
-- **Dashboard Admin (/admin)**: 
+- **Dashboard Premium (/admin/dashboard)**:
   - Tema escuro premium com tooltips informativos.
   - Cards de métricas: Total Acessos, Total Respostas, NPS Geral, Médias das Perguntas.
   - Gráficos: Respostas por dia (barras) e Distribuição NPS agrupada (0-3: Ruim, 4-7: Bom, 8-10: Excelente) com legenda e labels de porcentagem.
-  - Tabela completa de respostas com filtros e exportação visual.
+  - Tabela completa de respostas com exportação visual.
+  - Tooltips interativos em todos os cards e gráficos.
+  - Acesso restrito via autenticação Supabase.
 
 ## Stack
 
@@ -55,9 +57,9 @@ Uma aplicação web fullstack para coletar feedback de clientes da Rede Soma Av.
 
 1. **Conecte o repositório GitHub** no [Vercel](https://vercel.com).
 2. **Configure variáveis de ambiente** no dashboard do Vercel:
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `ADMIN_PASSWORD` (senha para acessar /admin)
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - (opcional) `ADMIN_PASSWORD` (caso use proteção adicional)
 3. **Deploy automático**: O Vercel fará o build e deploy automaticamente.
 4. **Acesso ao Admin**: Use `?password=sua_senha` na URL ou header `Authorization: Bearer sua_senha` para /admin.
 
